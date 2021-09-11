@@ -7,7 +7,6 @@ export const Item = styled.div`
   color: white;
   overflow: hidden;
 `;
-Item.displayName = 'Item';
 
 export const Inner = styled.div`
   display: flex;
@@ -22,7 +21,6 @@ export const Inner = styled.div`
     flex-direction: column;
   }
 `;
-Inner.displayName = 'Inner';
 
 export const Container = styled.section`
   background-color: black;
@@ -33,7 +31,6 @@ export const Container = styled.section`
     }
   }
 `;
-Container.displayName = 'Container';
 
 export const Pane = styled.div`
   width: 50%;
@@ -44,7 +41,6 @@ export const Pane = styled.div`
     text-align: center;
   }
 `;
-Pane.displayName = 'Pane';
 
 export const Title = styled.h1`
   font-size: 50px;
@@ -55,7 +51,6 @@ export const Title = styled.h1`
     font-size: 35px;
   }
 `;
-Title.displayName = 'Title';
 
 export const SubTitle = styled.h2`
   font-size: 26px;
@@ -66,10 +61,8 @@ export const SubTitle = styled.h2`
     font-size: 18px;
   }
 `;
-SubTitle.displayName = 'SubTitle';
 
 export const Image = styled.img`
   max-width: 100%;
   height: auto;
 `;
-Image.displayName = 'Image';

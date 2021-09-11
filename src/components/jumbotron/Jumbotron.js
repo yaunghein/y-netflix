@@ -8,22 +8,22 @@ export default function Jumbotron({ children, direction = 'row', ...restProps })
   );
 }
 
-Jumbotron.Container = ({ children, ...restProps }) => {
+Jumbotron.Container = function JumbotronContainer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 };
 
-Jumbotron.Pane = ({ children, ...restProps }) => {
+Jumbotron.Pane = function JumbotronPane({ children, ...restProps }) {
   return <Pane {...restProps}>{children}</Pane>;
 };
 
-Jumbotron.Title = ({ children, ...restProps }) => {
+Jumbotron.Title = function JumbotronTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Jumbotron.SubTitle = ({ children, ...restProps }) => {
+Jumbotron.SubTitle = function JumbotronSubTitle({ children, ...restProps }) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
 };
 
-Jumbotron.Image = ({ ...restProps }) => {
+Jumbotron.Image = function JumbotronImage({ ...restProps }) {
   return <Image {...restProps} />;
 };

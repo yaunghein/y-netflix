@@ -1,6 +1,9 @@
 import { createGlobalStyle, css } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`${css`
+  * {
+    box-sizing: border-box;
+  }
   html,
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
