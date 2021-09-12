@@ -36,9 +36,9 @@ Accordion.Header = function AccordionHeader({ children, ...restProps }) {
     <Header onClick={() => setIsOpen(!isOpen)} {...restProps}>
       {children}
       {isOpen ? (
-        <Icon src='/images/icons/close-slim.png' alt='Close' />
+        <Icon src='./images/icons/close-slim.png' alt='Close' />
       ) : (
-        <Icon src='/images/icons/add.png' alt='Open' />
+        <Icon src='./images/icons/add.png' alt='Open' />
       )}
     </Header>
   );

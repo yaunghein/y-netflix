@@ -1,77 +1,98 @@
 import styled from 'styled-components';
+import { Link as ReachRouterLink } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled.section`
   display: flex;
-  justify-content: center;
-  height: 100%;
-  margin-top: 20px;
-  flex-wrap: wrap;
-
-  @media (max-width: 1000px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-export const Input = styled.input`
-  max-width: 425px;
-  width: 100%;
-  border: 0;
-  padding: 10px;
-  height: 70px;
+  flex-direction: column;
+  /* min-height: 560px; */
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
   box-sizing: border-box;
-  font-size: 19px;
-
-  @media (max-width: 1000px) {
-    height: 50px;
-  }
+  width: 100%;
+  margin: auto;
+  max-width: 450px;
+  padding: 60px 68px 40px;
+  margin-bottom: 100px;
 
   @media (max-width: 600px) {
-    font-size: 16px;
+    max-width: 83.5vw;
+    padding: 30px 34px 20px;
+    margin-top: 40px;
   }
 `;
 
-export const Button = styled.button`
+export const Base = styled.form`
   display: flex;
-  align-items: center;
-  height: 70px;
-  background: #e50914;
-  color: white;
-  text-transform: uppercase;
-  padding: 0 32px;
-  font-size: 26px;
-  border: 0;
-  cursor: pointer;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
+`;
 
-  img {
-    margin-left: 10px;
-    filter: brightness(0) invert(1);
-    width: 32px;
-
-    @media (max-width: 1000px) {
-      width: 20px;
-    }
-  }
-
-  &:hover {
-    background: #f40612;
-  }
-
-  @media (max-width: 1000px) {
-    height: 50px;
-    font-size: 16px;
-    margin-top: 20px;
-    font-weight: bold;
-  }
+export const Title = styled.h1`
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 28px;
 `;
 
 export const Text = styled.p`
-  font-size: 19px;
-  color: white;
-  text-align: center;
+  color: #737373;
+  font-size: 16px;
+  font-weight: 500;
+`;
 
-  @media (max-width: 600px) {
-    font-size: 16px;
-    line-height: 22px;
+export const SmallText = styled.p`
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: normal;
+  color: #8c8c8c;
+`;
+
+export const Link = styled(ReachRouterLink)`
+  color: #fff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const Error = styled.div`
+  background: #e87c03;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 0 16px;
+  color: white;
+  padding: 15px 20px;
+`;
+
+export const Input = styled.input`
+  background: #333;
+  border-radius: 4px;
+  border: 0;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+`;
+
+export const Submit = styled.button`
+  background: #e50914;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 12px;
+  padding: 16px;
+  border: 0;
+  color: white;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
   }
 `;
