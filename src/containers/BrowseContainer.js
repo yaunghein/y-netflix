@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import SelectProfileContainer from './SelectProfileContainer';
 import FooterContainer from './FooterContainer';
 import { Header, Loading } from '../components';
@@ -10,23 +10,38 @@ const BrowseContainer = () => {
   const [category, setCategory] = useState('series');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
+  const firstRender = useRef(true);
 
   const { firebase } = useContext(FirebaseContext);
 
-  const user = {
-    displayName: 'Yaung Hein',
-    photoURL: '1',
-  };
+  const users = [
+    {
+      userId: 1,
+      displayName: 'Yaung Hein',
+      photoURL: '1',
+    },
+    {
+      userId: 2,
+      displayName: 'May Htun',
+      photoURL: '2',
+    },
+  ];
 
   useEffect(() => {
+    //preventing running effect on first render
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
-  }, [user]);
+    }, 2000);
+  });
 
   return profile.displayName ? (
     <>
-      {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+      {loading ? <Loading src={profile.photoURL} /> : <Loading.ReleaseBody />}
       <Header src='joker1' dontShowOnSmallViewPort>
         <Header.Frame>
           <Header.Group>
@@ -41,11 +56,11 @@ const BrowseContainer = () => {
           <Header.Group>
             <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <Header.Profile>
-              <Header.Picture src={user.photoURL} />
+              <Header.Picture src={profile.photoURL} />
               <Header.Dropdown>
                 <Header.Group>
-                  <Header.Picture src={user.photoURL} />
-                  <Header.Link>{user.displayName}</Header.Link>
+                  <Header.Picture src={profile.photoURL} />
+                  <Header.Link>{profile.displayName}</Header.Link>
                 </Header.Group>
                 <Header.Group>
                   <Header.Link onClick={() => firebase.auth().signOut()}>Sign out</Header.Link>
@@ -68,7 +83,7 @@ const BrowseContainer = () => {
       <FooterContainer />
     </>
   ) : (
-    <SelectProfileContainer user={user} setProfile={setProfile} />
+    <SelectProfileContainer users={users} setProfile={setProfile} />
   );
 };
 

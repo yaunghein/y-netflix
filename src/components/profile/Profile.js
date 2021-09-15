@@ -17,7 +17,7 @@ Profile.User = function ProfileUser({ children, ...restProps }) {
 };
 
 Profile.Picture = function ProfilePicture({ src, ...restProps }) {
-  return <Picture {...restProps} src={src ? `/images/users/${src}.png` : '/images/misc/loading.gif'} />;
+  return <Picture {...restProps} src={src ? `./images/users/${src}.png` : './images/misc/loading.gif'} />;
 };
 
 Profile.Name = function ProfileName({ children, ...restProps }) {

@@ -5,7 +5,8 @@ import { Home, Browse, SignIn, SignUp } from './pages';
 
 const App = () => {
   return (
-    <Router>
+    // <Router>
+    <Router basename='/y-netflix'>
       <Switch>
         <Route path={ROUTES.SIGN_IN}>
           <SignIn />

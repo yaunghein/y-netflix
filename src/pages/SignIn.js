@@ -13,6 +13,7 @@ const SignIn = () => {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const isInvalid = password === '' || emailAddress === '';
 
@@ -51,8 +52,8 @@ const SignIn = () => {
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
-            <Form.Submit type='submit' disabled={isInvalid}>
-              Sign In
+            <Form.Submit onClick={() => setLoading(true)} type='submit' disabled={isInvalid}>
+              {loading ? 'Signing In...' : 'Sign In'}
             </Form.Submit>
 
             <Form.Text>

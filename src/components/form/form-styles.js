@@ -13,6 +13,17 @@ export const Container = styled.section`
   max-width: 450px;
   padding: 60px 68px 40px;
   margin-bottom: 100px;
+  opacity: 0;
+  animation: fadeIn 0.2s forwards ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @media (max-width: 600px) {
     max-width: 83.5vw;

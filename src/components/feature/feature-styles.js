@@ -6,6 +6,17 @@ export const Container = styled.div`
   text-align: center;
   padding: 120px 45px;
   border-bottom: 8px solid #222;
+  opacity: 0;
+  animation: fadeIn 0.2s forwards ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Title = styled.h1`

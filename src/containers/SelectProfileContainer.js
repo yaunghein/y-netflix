@@ -1,7 +1,7 @@
 import { Header, Profile } from '../components';
 import * as ROUTES from '../constants/routes';
 
-const SelectProfileContainer = ({ user, setProfile }) => {
+const SelectProfileContainer = ({ users, setProfile }) => {
   return (
     <>
       <Header bg={false}>
@@ -12,16 +12,20 @@ const SelectProfileContainer = ({ user, setProfile }) => {
       <Profile>
         <Profile.Title>Who's watching?</Profile.Title>
         <Profile.List>
-          <Profile.User
-            onClick={() =>
-              setProfile({
-                displayName: user.displayName,
-                photoURL: user.photoURL,
-              })
-            }>
-            <Profile.Picture src={user.photoURL} />
-            <Profile.Name>{user.displayName}</Profile.Name>
-          </Profile.User>
+          {users.map(user => (
+            <Profile.User
+              key={user.userId}
+              onClick={() =>
+                setProfile({
+                  id: user.userId,
+                  displayName: user.displayName,
+                  photoURL: user.photoURL,
+                })
+              }>
+              <Profile.Picture src={user.photoURL} />
+              <Profile.Name>{user.displayName}</Profile.Name>
+            </Profile.User>
+          ))}
         </Profile.List>
       </Profile>
     </>
