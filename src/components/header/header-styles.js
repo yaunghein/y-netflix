@@ -93,7 +93,7 @@ export const ButtonLink = styled(ReachRouterLink)`
 `;
 
 export const Feature = styled(Frame)`
-  padding: 210px 0 360px 0;
+  padding: 210px 0 420px;
   flex-direction: column;
   align-items: normal;
   width: 50%;

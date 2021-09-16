@@ -32,11 +32,13 @@ export const Group = styled.div`
   ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
   ${({ margin }) => margin && `margin: ${margin}`};
 
-  /* > ${Container}:first-of-type {
+  > ${Container}:first-of-type {
+    z-index: 100;
+    margin-top: -56px;
     @media (max-width: 1100px) {
       margin-top: -150px;
     }
-  } */
+  }
 `;
 
 export const SubTitle = styled.p`

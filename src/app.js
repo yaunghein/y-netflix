@@ -1,26 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import { Home, Browse, SignIn, SignUp } from './pages';
+import { useAuthListener } from './hooks';
+import { RedirectIfLoggedIn, ProtectedRoute } from './utils/routeManager';
 
 const App = () => {
+  const { user } = useAuthListener();
+
   return (
     // "homepage": "https://yaunghein.github.io/y-netflix",
-    // <Router basename='/y-netflix'>
-    <Router>
+    <Router basename='/y-netflix'>
+      {/* <Router> */}
       <Switch>
-        <Route path={ROUTES.SIGN_IN}>
+        <RedirectIfLoggedIn user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_IN}>
           <SignIn />
-        </Route>
-        <Route path={ROUTES.SIGN_UP}>
+        </RedirectIfLoggedIn>
+        <RedirectIfLoggedIn user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_UP}>
           <SignUp />
-        </Route>
-        <Route path={ROUTES.BROWSE}>
+        </RedirectIfLoggedIn>
+        <ProtectedRoute user={user} path={ROUTES.BROWSE}>
           <Browse />
-        </Route>
-        <Route exact path={ROUTES.HOME}>
+        </ProtectedRoute>
+        <RedirectIfLoggedIn exact user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.HOME}>
           <Home />
-        </Route>
+        </RedirectIfLoggedIn>
       </Switch>
     </Router>
   );

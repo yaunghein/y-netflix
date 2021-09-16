@@ -21,8 +21,7 @@ const FeatureContext = createContext();
 
 export default function Card({ children, ...restProps }) {
   const [featureOpen, setFeatureOpen] = useState(false);
-  const [featureItem, setFeatureItem] = useState(false);
-  //try to change to empty obj later
+  const [featureItem, setFeatureItem] = useState({});
   return (
     <FeatureContext.Provider value={{ featureOpen, setFeatureOpen, featureItem, setFeatureItem }}>
       <Container {...restProps}>{children}</Container>
@@ -77,12 +76,12 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
   const { featureOpen, setFeatureOpen, featureItem } = useContext(FeatureContext);
   return (
     featureOpen && (
-      <Feature src={`/images/${category}/${featureItem.genre}/${featureItem.slug}/large.jpg`} {...restProps}>
+      <Feature src={`./images/${category}/${featureItem.genre}/${featureItem.slug}/large.jpg`} {...restProps}>
         <FeatureContent>
           <FeatureTitle>{featureItem.title}</FeatureTitle>
           <FeatureText>{featureItem.description}</FeatureText>
           <FeatureClose onClick={() => setFeatureOpen(false)}>
-            <img src='/images/icons/close.png' alt='Close' />
+            <img src='./images/icons/close.png' alt='Close' />
           </FeatureClose>
 
           <Group margin='30px 0' flexDirection='row' alignItems='center'>

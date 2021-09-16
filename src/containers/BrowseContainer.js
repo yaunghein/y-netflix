@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import SelectProfileContainer from './SelectProfileContainer';
 import FooterContainer from './FooterContainer';
-import { Header, Loading, Card } from '../components';
+import { Header, Loading, Card, Player } from '../components';
 import * as ROUTES from '../constants/routes';
 import { FirebaseContext } from '../context/firebase';
+import Fuse from 'fuse.js';
+import { useAuthListener } from '../hooks';
 
 const BrowseContainer = ({ slides }) => {
   const [profile, setProfile] = useState({});
@@ -12,17 +14,13 @@ const BrowseContainer = ({ slides }) => {
   const [loading, setLoading] = useState(false);
   const { firebase } = useContext(FirebaseContext);
   const [slideRows, setSlideRows] = useState([]);
+  const { user: owner } = useAuthListener();
 
   const users = [
     {
       userId: 1,
-      displayName: 'Yaung Hein',
-      photoURL: '1',
-    },
-    {
-      userId: 2,
-      displayName: 'May Htun',
-      photoURL: '2',
+      displayName: owner?.displayName,
+      photoURL: owner?.photoURL,
     },
   ];
 
@@ -38,6 +36,18 @@ const BrowseContainer = ({ slides }) => {
   useEffect(() => {
     setSlideRows(slides[category]);
   }, [slides, category]);
+
+  //effect to change cards based on search
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.title', 'data.genre'] });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length > 0 && searchTerm.length > 2 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [searchTerm]);
 
   return profile.displayName ? (
     <>
@@ -88,7 +98,7 @@ const BrowseContainer = ({ slides }) => {
             <Card.Entities>
               {slideItem.data.map(item => (
                 <Card.Item key={item.docId} item={item}>
-                  <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`} />
+                  <Card.Image src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`} />
                   <Card.Meta>
                     <Card.SubTitle>{item.title}</Card.SubTitle>
                     <Card.Text>{item.description}</Card.Text>
@@ -96,7 +106,12 @@ const BrowseContainer = ({ slides }) => {
                 </Card.Item>
               ))}
             </Card.Entities>
-            <Card.Feature category={category} />
+            <Card.Feature category={category}>
+              <Player>
+                <Player.Button />
+                <Player.Video />
+              </Player>
+            </Card.Feature>
           </Card>
         ))}
       </Card.Group>

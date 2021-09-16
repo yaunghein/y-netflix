@@ -23,12 +23,7 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
-      .then(() => {
-        setEmailAddress('');
-        setPassword('');
-        setError('');
-        history.push(ROUTES.BROWSE);
-      })
+      .then(() => history.push(ROUTES.BROWSE))
       .catch(error => {
         setLoading(false);
         setError(error.message);
