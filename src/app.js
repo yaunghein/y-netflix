@@ -5,8 +5,9 @@ import { Home, Browse, SignIn, SignUp } from './pages';
 
 const App = () => {
   return (
-    // <Router>
-    <Router basename='/y-netflix'>
+    // "homepage": "https://yaunghein.github.io/y-netflix",
+    // <Router basename='/y-netflix'>
+    <Router>
       <Switch>
         <Route path={ROUTES.SIGN_IN}>
           <SignIn />
@@ -24,5 +25,4 @@ const App = () => {
     </Router>
   );
 };
-
 export default App;

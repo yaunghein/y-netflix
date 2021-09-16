@@ -1,7 +1,7 @@
 import { Header, Profile } from '../components';
 import * as ROUTES from '../constants/routes';
 
-const SelectProfileContainer = ({ users, setProfile }) => {
+const SelectProfileContainer = ({ users, setProfile, setLoading }) => {
   return (
     <>
       <Header bg={false}>
@@ -15,13 +15,14 @@ const SelectProfileContainer = ({ users, setProfile }) => {
           {users.map(user => (
             <Profile.User
               key={user.userId}
-              onClick={() =>
+              onClick={() => {
+                setLoading(true);
                 setProfile({
                   id: user.userId,
                   displayName: user.displayName,
                   photoURL: user.photoURL,
-                })
-              }>
+                });
+              }}>
               <Profile.Picture src={user.photoURL} />
               <Profile.Name>{user.displayName}</Profile.Name>
             </Profile.User>

@@ -12,6 +12,7 @@ const SignIn = () => {
 
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
+  const [seenPassword, setSeenPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +29,10 @@ const SignIn = () => {
         setError('');
         history.push(ROUTES.BROWSE);
       })
-      .catch(error => setError(error.message));
+      .catch(error => {
+        setLoading(false);
+        setError(error.message);
+      });
   };
 
   return (
@@ -46,12 +50,26 @@ const SignIn = () => {
               onChange={({ target }) => setEmailAddress(target.value)}
             />
             <Form.Input
-              type='password'
+              type={seenPassword ? 'text' : 'password'}
               placeholder='Password'
               autoComplete='off'
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
+            <p
+              style={{
+                margin: '-10px 0 16px',
+                cursor: 'pointer',
+                color: '#000',
+                background: '#fff',
+                padding: '8px 16px',
+                alignSelf: 'flex-start',
+                userSelect: 'none',
+                borderRadius: '3px',
+              }}
+              onClick={() => setSeenPassword(!seenPassword)}>
+              {seenPassword ? 'unsee password' : 'see password'}
+            </p>
             <Form.Submit onClick={() => setLoading(true)} type='submit' disabled={isInvalid}>
               {loading ? 'Signing In...' : 'Sign In'}
             </Form.Submit>

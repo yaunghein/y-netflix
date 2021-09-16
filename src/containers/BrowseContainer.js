@@ -1,18 +1,17 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SelectProfileContainer from './SelectProfileContainer';
 import FooterContainer from './FooterContainer';
-import { Header, Loading } from '../components';
+import { Header, Loading, Card } from '../components';
 import * as ROUTES from '../constants/routes';
 import { FirebaseContext } from '../context/firebase';
 
-const BrowseContainer = () => {
+const BrowseContainer = ({ slides }) => {
   const [profile, setProfile] = useState({});
   const [category, setCategory] = useState('series');
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
-  const firstRender = useRef(true);
-
+  const [loading, setLoading] = useState(false);
   const { firebase } = useContext(FirebaseContext);
+  const [slideRows, setSlideRows] = useState([]);
 
   const users = [
     {
@@ -27,17 +26,18 @@ const BrowseContainer = () => {
     },
   ];
 
+  //effect to fake loading state when going from select profile to browse
+  //trigger when select profile component set loading state to true
   useEffect(() => {
-    //preventing running effect on first render
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-  });
+  }, [loading]);
+
+  //effect to change slides based on category
+  useEffect(() => {
+    setSlideRows(slides[category]);
+  }, [slides, category]);
 
   return profile.displayName ? (
     <>
@@ -80,10 +80,30 @@ const BrowseContainer = () => {
           <Header.PlayButton>Play Now</Header.PlayButton>
         </Header.Feature>
       </Header>
+
+      <Card.Group>
+        {slideRows.map(slideItem => (
+          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+            <Card.Title>{slideItem.title}</Card.Title>
+            <Card.Entities>
+              {slideItem.data.map(item => (
+                <Card.Item key={item.docId} item={item}>
+                  <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`} />
+                  <Card.Meta>
+                    <Card.SubTitle>{item.title}</Card.SubTitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              ))}
+            </Card.Entities>
+            <Card.Feature category={category} />
+          </Card>
+        ))}
+      </Card.Group>
       <FooterContainer />
     </>
   ) : (
-    <SelectProfileContainer users={users} setProfile={setProfile} />
+    <SelectProfileContainer users={users} setProfile={setProfile} setLoading={setLoading} />
   );
 };
 

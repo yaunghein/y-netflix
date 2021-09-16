@@ -1,7 +1,13 @@
-import { Container, Title, List, User, Picture, Name } from './profile-styles';
+import { Container, Mask, Title, List, User, Picture, Name } from './profile-styles';
 
 export default function Profile({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+  return (
+    <>
+      <Mask>
+        <Container {...restProps}>{children}</Container>
+      </Mask>
+    </>
+  );
 }
 
 Profile.Title = function ProfileTitle({ children, ...restProps }) {

@@ -7,6 +7,22 @@ export const Container = styled.div`
   align-items: center;
   margin: auto;
   max-width: 80%;
+  animation: fadeIn 0.4s forwards ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(1.3);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+`;
+
+export const Mask = styled.div`
+  overflow: hidden;
 `;
 
 export const Title = styled.h1`

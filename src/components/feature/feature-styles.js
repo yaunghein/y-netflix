@@ -7,9 +7,9 @@ export const Container = styled.div`
   padding: 120px 45px;
   border-bottom: 8px solid #222;
   opacity: 0;
-  animation: fadeIn 0.2s forwards ease-out;
+  animation: fade 0.2s forwards ease-out;
 
-  @keyframes fadeIn {
+  @keyframes fade {
     from {
       opacity: 0;
     }
