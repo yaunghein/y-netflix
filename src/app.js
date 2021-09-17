@@ -4,14 +4,16 @@ import * as ROUTES from './constants/routes';
 import { Home, Browse, SignIn, SignUp } from './pages';
 import { useAuthListener } from './hooks';
 import { RedirectIfLoggedIn, ProtectedRoute } from './utils/routeManager';
+import ScrollToTop from './utils/ScrollToTop';
 
 const App = () => {
   const { user } = useAuthListener();
 
   return (
     // "homepage": "https://yaunghein.github.io/y-netflix",
+    // <Router>
     <Router basename='/y-netflix'>
-      {/* <Router> */}
+      <ScrollToTop />
       <Switch>
         <RedirectIfLoggedIn user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_IN}>
           <SignIn />

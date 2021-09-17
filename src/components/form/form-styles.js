@@ -4,7 +4,6 @@ import { Link as ReachRouterLink } from 'react-router-dom';
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
-  /* min-height: 560px; */
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   box-sizing: border-box;
@@ -28,7 +27,7 @@ export const Container = styled.section`
   @media (max-width: 600px) {
     max-width: 83.5vw;
     padding: 30px 34px 20px;
-    margin-top: 40px;
+    margin: auto;
   }
 `;
 

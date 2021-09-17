@@ -61,6 +61,7 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
       onClick={() => {
         setFeatureItem(item);
         setFeatureOpen(true);
+        console.log(item);
       }}
       {...restProps}>
       {children}
@@ -72,8 +73,8 @@ Card.Image = function CardImage({ ...restProps }) {
   return <Image {...restProps} />;
 };
 
-Card.Feature = function CardFeature({ category, children, ...restProps }) {
-  const { featureOpen, setFeatureOpen, featureItem } = useContext(FeatureContext);
+Card.Feature = function CardFeature({ category, relatedData, children, ...restProps }) {
+  const { featureOpen, setFeatureOpen, featureItem, setFeatureItem } = useContext(FeatureContext);
   return (
     featureOpen && (
       <Feature src={`./images/${category}/${featureItem.genre}/${featureItem.slug}/large.jpg`} {...restProps}>
@@ -91,7 +92,14 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
             </FeatureText>
           </Group>
 
-          {children}
+          {relatedData
+            .filter(item => item.title !== featureItem.title)
+            .map(item => (
+              <p key={item.docId} onClick={() => setFeatureItem(item)}>
+                {item.title}
+              </p>
+            ))}
+          <p>This is extra</p>
         </FeatureContent>
       </Feature>
     )

@@ -100,7 +100,7 @@ export const Item = styled.div`
   }
 
   @media (min-width: 1000px) {
-    &:hover ${Meta}, &:hover ${Text}, &:hover ${SubTitle} {
+    &:hover :is(${Meta}, ${Text}, ${SubTitle}) {
       display: block;
       z-index: 100;
     }

@@ -22,6 +22,11 @@ const BrowseContainer = ({ slides }) => {
       displayName: owner?.displayName,
       photoURL: owner?.photoURL,
     },
+    {
+      userId: 2,
+      displayName: owner?.displayName === 'Yaung Hein' ? 'May Htun' : `${owner?.displayName}'s Girlfriend`,
+      photoURL: owner?.photoURL === 5 ? 1 : Number(owner?.photoURL) + 1,
+    },
   ];
 
   //effect to fake loading state when going from select profile to browse
@@ -106,7 +111,7 @@ const BrowseContainer = ({ slides }) => {
                 </Card.Item>
               ))}
             </Card.Entities>
-            <Card.Feature category={category}>
+            <Card.Feature category={category} relatedData={slideItem.data}>
               <Player>
                 <Player.Button />
                 <Player.Video />

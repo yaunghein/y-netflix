@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { Form } from '../components';
 import HeaderContainer from '../containers/HeaderContainer';
@@ -15,6 +15,7 @@ const SignIn = () => {
   const [seenPassword, setSeenPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const focusRef = useRef(null);
 
   const isInvalid = password === '' || emailAddress === '';
 
@@ -30,6 +31,10 @@ const SignIn = () => {
       });
   };
 
+  useEffect(() => {
+    focusRef.current.focus();
+  }, []);
+
   return (
     <>
       <HeaderContainer>
@@ -39,6 +44,7 @@ const SignIn = () => {
 
           <Form.Base onSubmit={handleSignIn} method='POST'>
             <Form.Input
+              focusRef={focusRef}
               type='email'
               placeholder='Email address'
               value={emailAddress}
@@ -51,7 +57,7 @@ const SignIn = () => {
               value={password}
               onChange={({ target }) => setPassword(target.value)}
             />
-            <p
+            {/* <p
               style={{
                 margin: '-10px 0 16px',
                 cursor: 'pointer',
@@ -64,7 +70,7 @@ const SignIn = () => {
               }}
               onClick={() => setSeenPassword(!seenPassword)}>
               {seenPassword ? 'unsee password' : 'see password'}
-            </p>
+            </p> */}
             <Form.Submit onClick={() => setLoading(true)} type='submit' disabled={isInvalid}>
               {loading ? 'Signing In...' : 'Sign In'}
             </Form.Submit>

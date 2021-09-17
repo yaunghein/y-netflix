@@ -5,7 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   text-align: center;
   padding: 120px 45px;
-  border-bottom: 8px solid #222;
   opacity: 0;
   animation: fade 0.2s forwards ease-out;
 
@@ -16,6 +15,10 @@ export const Container = styled.div`
     to {
       opacity: 1;
     }
+  }
+
+  @media (max-width: 600px) {
+    margin: auto 0;
   }
 `;
 

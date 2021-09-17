@@ -1,7 +1,11 @@
+import { useHistory } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
 import { Accordion, OptForm } from '../components';
 import faqsData from '../fixtures/faqs.json';
 
-const FaqsContainer = () => {
+const FaqsContainer = ({ email, setEmail }) => {
+  const history = useHistory();
+
   return (
     <Accordion>
       <Accordion.Title>Frequently Asked Questions</Accordion.Title>
@@ -15,8 +19,19 @@ const FaqsContainer = () => {
       </Accordion.Frame>
 
       <OptForm>
-        <OptForm.Input placeholder='Email Address' />
-        <OptForm.Button>Try it now</OptForm.Button>
+        <OptForm.Input
+          type='email'
+          value={email}
+          onChange={({ target }) => setEmail(target.value)}
+          placeholder='Email Address'
+        />
+        <OptForm.Button
+          disabled={!email.length}
+          onClick={() => {
+            history.push(ROUTES.SIGN_UP);
+          }}>
+          Try it now
+        </OptForm.Button>
         <OptForm.Text>Ready to watch? Enter your email to create or restart your membership.</OptForm.Text>
       </OptForm>
     </Accordion>

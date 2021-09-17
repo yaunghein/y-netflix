@@ -19,6 +19,10 @@ export const Container = styled.div`
       transform: scale(1);
     }
   }
+
+  @media (max-width: 600px) {
+    margin-top: 5em;
+  }
 `;
 
 export const Mask = styled.div`

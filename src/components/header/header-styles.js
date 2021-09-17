@@ -7,6 +7,8 @@ export const Background = styled.section`
   position: relative;
   background: url(${({ src }) => (src ? `./images/misc/${src}.jpg` : './images/misc/home-bg.jpg')}) top left / cover
     no-repeat;
+  height: 110vh;
+  border-bottom: 8px solid #222;
 
   &::before {
     content: '';
@@ -20,9 +22,14 @@ export const Background = styled.section`
     background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
   }
 
-  @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
+  @media (max-width: 600px) {
+    height: 100vh;
+    display: flex;
   }
+
+  /* @media (max-width: 1100px) {
+    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
+  } */
 `;
 
 export const Frame = styled.div`
