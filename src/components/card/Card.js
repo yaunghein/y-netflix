@@ -92,14 +92,21 @@ Card.Feature = function CardFeature({ category, relatedData, children, ...restPr
             </FeatureText>
           </Group>
 
+          {children}
+
           {relatedData
             .filter(item => item.title !== featureItem.title)
             .map(item => (
-              <p key={item.docId} onClick={() => setFeatureItem(item)}>
-                {item.title}
-              </p>
+              <Card.Entities key={item.docId}>
+                <Card.Item onClick={() => setFeatureItem(item)}>
+                  <Card.Image src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`} />
+                  <Card.Meta>
+                    <Card.SubTitle>{item.title}</Card.SubTitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              </Card.Entities>
             ))}
-          <p>This is extra</p>
         </FeatureContent>
       </Feature>
     )
