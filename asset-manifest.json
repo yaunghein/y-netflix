@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/y-netflix/static/js/main.c13afc04.chunk.js",
-    "main.js.map": "/y-netflix/static/js/main.c13afc04.chunk.js.map",
-    "runtime-main.js": "/y-netflix/static/js/runtime-main.b864c2c7.js",
-    "runtime-main.js.map": "/y-netflix/static/js/runtime-main.b864c2c7.js.map",
-    "static/js/2.0faa1c79.chunk.js": "/y-netflix/static/js/2.0faa1c79.chunk.js",
-    "static/js/2.0faa1c79.chunk.js.map": "/y-netflix/static/js/2.0faa1c79.chunk.js.map",
+    "main.js": "/y-netflix/static/js/main.4cf82591.chunk.js",
+    "main.js.map": "/y-netflix/static/js/main.4cf82591.chunk.js.map",
+    "runtime-main.js": "/y-netflix/static/js/runtime-main.3f18fe75.js",
+    "runtime-main.js.map": "/y-netflix/static/js/runtime-main.3f18fe75.js.map",
+    "static/js/2.88bc2dc5.chunk.js": "/y-netflix/static/js/2.88bc2dc5.chunk.js",
+    "static/js/2.88bc2dc5.chunk.js.map": "/y-netflix/static/js/2.88bc2dc5.chunk.js.map",
     "index.html": "/y-netflix/index.html",
-    "static/js/2.0faa1c79.chunk.js.LICENSE.txt": "/y-netflix/static/js/2.0faa1c79.chunk.js.LICENSE.txt"
+    "static/js/2.88bc2dc5.chunk.js.LICENSE.txt": "/y-netflix/static/js/2.88bc2dc5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b864c2c7.js",
-    "static/js/2.0faa1c79.chunk.js",
-    "static/js/main.c13afc04.chunk.js"
+    "static/js/runtime-main.3f18fe75.js",
+    "static/js/2.88bc2dc5.chunk.js",
+    "static/js/main.4cf82591.chunk.js"
   ]
 }
