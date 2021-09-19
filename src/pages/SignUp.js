@@ -49,40 +49,37 @@ const SignUp = () => {
           {error && <Form.Error>{error}</Form.Error>}
 
           <Form.Base onSubmit={handleSignUp} method='POST'>
-            <Form.Input
-              focusRef={focusRef}
-              type='text'
-              placeholder='First Name'
-              value={firstName}
-              onChange={({ target }) => setFirstName(target.value)}
-            />
-            <Form.Input
-              type='email'
-              placeholder='Email Address'
-              value={emailAddress}
-              onChange={({ target }) => setEmailAddress(target.value)}
-            />
-            <Form.Input
-              type={seenPassword ? 'text' : 'password'}
-              placeholder='Password'
-              autoComplete='off'
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-            />
-            {/* <p
-              style={{
-                margin: '-10px 0 16px',
-                cursor: 'pointer',
-                color: '#000',
-                background: '#fff',
-                padding: '8px 16px',
-                alignSelf: 'flex-start',
-                userSelect: 'none',
-                borderRadius: '3px',
-              }}
-              onClick={() => setSeenPassword(!seenPassword)}>
-              {seenPassword ? 'unsee password' : 'see password'}
-            </p> */}
+            <Form.InputControl>
+              <Form.Input
+                focusRef={focusRef}
+                type='text'
+                placeholder='First Name'
+                value={firstName}
+                onChange={({ target }) => setFirstName(target.value)}
+              />
+            </Form.InputControl>
+            <Form.InputControl>
+              <Form.Input
+                type='email'
+                placeholder='Email Address'
+                value={emailAddress}
+                onChange={({ target }) => setEmailAddress(target.value)}
+              />
+            </Form.InputControl>
+            <Form.InputControl>
+              <Form.Input
+                type={seenPassword ? 'text' : 'password'}
+                placeholder='Password'
+                autoComplete='off'
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
+              />
+              <Form.SeenIcon
+                src='./images/icons/seen-icon.svg'
+                onClick={() => setSeenPassword(!seenPassword)}
+                seenPassword={seenPassword}
+              />
+            </Form.InputControl>
             <Form.Submit type='submit' disabled={isInvalid}>
               Sign Up
             </Form.Submit>

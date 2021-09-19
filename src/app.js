@@ -12,8 +12,8 @@ const App = () => {
 
   return (
     // "homepage": "https://yaunghein.github.io/y-netflix",
-    // <Router>
-    <Router basename='/y-netflix'>
+    // <Router basename='/y-netflix'>
+    <Router>
       <ScrollToTop />
       <Switch>
         <RedirectIfLoggedIn user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_IN}>

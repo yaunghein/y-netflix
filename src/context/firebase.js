@@ -1,20 +1,20 @@
-import { createContext } from 'react';
-const FirebaseContext = createContext(null);
+import { createContext } from 'react'
+const FirebaseContext = createContext(null)
 
 const config = {
-  apiKey: 'AIzaSyDvLVx9WvMXt9cdh8IrHYxND54ccRoULv4',
-  authDomain: 'y-netflix-clone.firebaseapp.com',
-  databaseURL: 'https://y-netflix-clone.firebaseio.com',
-  projectId: 'y-netflix-clone',
-  storageBucket: 'y-netflix-clone.appspot.com',
-  messagingSenderId: '762063313619',
-  appId: '1:762063313619:web:e470ff4808f8a714119226',
-};
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+}
 
-const firebase = window.firebase.initializeApp(config);
+const firebase = window.firebase.initializeApp(config)
 
 const FirebaseContextProvider = ({ children }) => {
-  return <FirebaseContext.Provider value={{ firebase }}>{children}</FirebaseContext.Provider>;
-};
+  return <FirebaseContext.Provider value={{ firebase }}>{children}</FirebaseContext.Provider>
+}
 
-export { FirebaseContextProvider, FirebaseContext };
+export { FirebaseContextProvider, FirebaseContext }

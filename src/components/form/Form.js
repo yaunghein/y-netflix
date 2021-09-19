@@ -1,4 +1,16 @@
-import { Container, Base, Title, Text, SmallText, Link, Error, Input, Submit } from './form-styles';
+import {
+  Container,
+  Base,
+  Title,
+  Text,
+  SmallText,
+  Link,
+  Error,
+  SeenIcon,
+  InputControl,
+  Input,
+  Submit,
+} from './form-styles';
 
 export default function Form({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -26,6 +38,14 @@ Form.Link = function FormLink({ children, ...restProps }) {
 
 Form.Error = function FormError({ children, ...restProps }) {
   return <Error {...restProps}>{children}</Error>;
+};
+
+Form.InputControl = function FormInputControl({ children, ...restProps }) {
+  return <InputControl {...restProps}>{children}</InputControl>;
+};
+
+Form.SeenIcon = function FormSeenIcon({ ...restProps }) {
+  return <SeenIcon {...restProps} />;
 };
 
 Form.Input = function FormInput({ focusRef, children, ...restProps }) {

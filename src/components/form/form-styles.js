@@ -81,14 +81,26 @@ export const Input = styled.input`
   border-radius: 4px;
   border: 0;
   color: #fff;
+  width: 100%;
   height: 50px;
   line-height: 50px;
   padding: 5px 20px;
-  margin-bottom: 20px;
+`;
 
-  &:last-of-type {
-    margin-bottom: 30px;
-  }
+export const SeenIcon = styled.img`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: 20px;
+  opacity: ${({ seenPassword }) => (seenPassword ? '1' : '0.5')};
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+`;
+
+export const InputControl = styled.div`
+  position: relative;
+  margin-bottom: 20px;
 `;
 
 export const Submit = styled.button`
@@ -96,7 +108,7 @@ export const Submit = styled.button`
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
-  margin: 0 0 12px;
+  margin: 10px 0 12px;
   padding: 16px;
   border: 0;
   color: white;

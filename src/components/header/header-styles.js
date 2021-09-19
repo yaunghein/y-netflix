@@ -8,7 +8,7 @@ export const Background = styled.section`
   background: url(${({ src }) => (src ? `./images/misc/${src}.jpg` : './images/misc/home-bg.jpg')}) top left / cover
     no-repeat;
   height: 110vh;
-  border-bottom: 8px solid #222;
+  border-bottom: ${({ borderBottom }) => (borderBottom ? '8px solid #222' : 'none')};
 
   &::before {
     content: '';
@@ -23,13 +23,13 @@ export const Background = styled.section`
   }
 
   @media (max-width: 600px) {
-    height: 100vh;
+    height: ${({ noHeightOnMobile }) => (noHeightOnMobile ? '32px' : '100vh')};
     display: flex;
   }
 
-  /* @media (max-width: 1100px) {
+  @media (max-width: 1100px) {
     ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
-  } */
+  }
 `;
 
 export const Frame = styled.div`

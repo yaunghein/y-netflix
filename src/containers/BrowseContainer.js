@@ -9,12 +9,13 @@ import { useAuthListener } from '../hooks';
 
 const BrowseContainer = ({ slides }) => {
   const [profile, setProfile] = useState({});
-  const [category, setCategory] = useState('series');
+  const [category, setCategory] = useState('films');
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
   const { firebase } = useContext(FirebaseContext);
   const [slideRows, setSlideRows] = useState([]);
-  const { user: owner } = useAuthListener();
+  const { user } = useAuthListener();
+  const [owner, setOwner] = useState({});
 
   const users = [
     {
@@ -25,9 +26,13 @@ const BrowseContainer = ({ slides }) => {
     {
       userId: 2,
       displayName: owner?.displayName === 'Yaung Hein' ? 'May Htun' : `${owner?.displayName}'s Girlfriend`,
-      photoURL: owner?.photoURL === 5 ? 1 : Number(owner?.photoURL) + 1,
+      photoURL: owner?.photoURL === '5' ? 1 : Number(owner?.photoURL) + 1,
     },
   ];
+
+  useEffect(() => {
+    setOwner(user);
+  }, [user]);
 
   //effect to fake loading state when going from select profile to browse
   //trigger when select profile component set loading state to true
@@ -57,7 +62,7 @@ const BrowseContainer = ({ slides }) => {
   return profile.displayName ? (
     <>
       {loading ? <Loading src={profile.photoURL} /> : <Loading.ReleaseBody />}
-      <Header src='joker1' dontShowOnSmallViewPort>
+      <Header src='joker1' dontShowOnSmallViewPort noHeightOnMobile>
         <Header.Frame>
           <Header.Group>
             <Header.Logo to={ROUTES.HOME} src='./images/misc/logo.svg' alt='Netflix' />
@@ -105,8 +110,30 @@ const BrowseContainer = ({ slides }) => {
                 <Card.Item key={item.docId} item={item}>
                   <Card.Image src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`} />
                   <Card.Meta>
+                    <Card.Group flexDirection='row'>
+                      <Card.Circle>
+                        <Card.CircleIcon src='./images/icons/play-icon.svg' />
+                      </Card.Circle>
+                      <Card.Circle>
+                        <Card.CircleIcon src='./images/icons/plus-icon.svg' />
+                      </Card.Circle>
+                      <Card.Circle>
+                        <Card.CircleIcon src='./images/icons/thumb-up-icon.svg' />
+                      </Card.Circle>
+                      <Card.Circle>
+                        <Card.CircleIcon src='./images/icons/thumb-down-icon.svg' />
+                      </Card.Circle>
+
+                      <Card.Circle>
+                        <Card.CircleIcon
+                          src='./images/icons/chevron-right.png'
+                          style={{ transform: 'rotate(90deg)' }}
+                        />
+                      </Card.Circle>
+                    </Card.Group>
                     <Card.SubTitle>{item.title}</Card.SubTitle>
                     <Card.Text>{item.description}</Card.Text>
+                    <Card.Genre>&#8226; {item.genre.charAt(0).toUpperCase() + item.genre.slice(1)}</Card.Genre>
                   </Card.Meta>
                 </Card.Item>
               ))}

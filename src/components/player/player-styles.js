@@ -13,7 +13,11 @@ export const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
   margin: 0 20px;
-  z-index: 200;
+  z-index: 2000;
+
+  @media (max-width: 600px) {
+    margin: 0;
+  }
 `;
 
 export const Inner = styled.div`
@@ -26,17 +30,22 @@ export const Inner = styled.div`
     height: 100%;
     width: 100%;
   }
+
+  @media (max-width: 600px) {
+    width: 80vw;
+  }
 `;
 
 export const Close = styled.button`
   position: absolute;
   right: 15px;
   top: 15px;
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   opacity: 0.3;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.8);
   border: 0;
+  border-radius: 100vw;
   cursor: pointer;
 
   &:hover {
@@ -46,8 +55,8 @@ export const Close = styled.button`
   &:before,
   &:after {
     position: absolute;
-    left: 10px;
-    top: 0;
+    left: 15.5px;
+    top: 5px;
     content: ' ';
     height: 22px;
     width: 2px;

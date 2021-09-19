@@ -7,6 +7,9 @@ import {
   Text,
   Entities,
   Meta,
+  Circle,
+  Genre,
+  CircleIcon,
   Item,
   Image,
   Feature,
@@ -53,6 +56,22 @@ Card.Meta = function CardMeta({ children, ...restProps }) {
   return <Meta {...restProps}>{children}</Meta>;
 };
 
+Card.Circle = function CardCircle({ children, ...restProps }) {
+  return <Circle {...restProps}>{children}</Circle>;
+};
+
+Card.Genre = function CardGenre({ children, ...restProps }) {
+  return <Genre {...restProps}>{children}</Genre>;
+};
+
+Card.Maturity = function CardMaturity({ children, ...restProps }) {
+  return <Maturity {...restProps}>{children}</Maturity>;
+};
+
+Card.CircleIcon = function CardCircleIcon({ ...restProps }) {
+  return <CircleIcon {...restProps} />;
+};
+
 Card.Item = function CardItem({ item, children, ...restProps }) {
   const { setFeatureItem, setFeatureOpen } = useContext(FeatureContext);
 
@@ -74,7 +93,7 @@ Card.Image = function CardImage({ ...restProps }) {
 };
 
 Card.Feature = function CardFeature({ category, relatedData, children, ...restProps }) {
-  const { featureOpen, setFeatureOpen, featureItem, setFeatureItem } = useContext(FeatureContext);
+  const { featureOpen, setFeatureOpen, featureItem } = useContext(FeatureContext);
   return (
     featureOpen && (
       <Feature src={`./images/${category}/${featureItem.genre}/${featureItem.slug}/large.jpg`} {...restProps}>
@@ -93,21 +112,20 @@ Card.Feature = function CardFeature({ category, relatedData, children, ...restPr
           </Group>
 
           {children}
-
+        </FeatureContent>
+        {/* <Card.Entities>
           {relatedData
             .filter(item => item.title !== featureItem.title)
             .map(item => (
-              <Card.Entities key={item.docId}>
-                <Card.Item onClick={() => setFeatureItem(item)}>
-                  <Card.Image src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`} />
-                  <Card.Meta>
-                    <Card.SubTitle>{item.title}</Card.SubTitle>
-                    <Card.Text>{item.description}</Card.Text>
-                  </Card.Meta>
-                </Card.Item>
-              </Card.Entities>
+              <Card.Item key={item.docId} onClick={() => setFeatureItem(item)}>
+                <Card.Image src={`./images/${category}/${item.genre}/${item.slug}/small.jpg`} />
+                <Card.Meta>
+                  <Card.SubTitle>{item.title}</Card.SubTitle>
+                  <Card.Text>{item.description}</Card.Text>
+                </Card.Meta>
+              </Card.Item>
             ))}
-        </FeatureContent>
+        </Card.Entities> */}
       </Feature>
     )
   );
